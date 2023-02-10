@@ -1,6 +1,7 @@
 package com.hotel;
 
 import java.io.Serializable;
+
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.Scanner;
@@ -66,8 +67,7 @@ class Doubleroom extends Singleroom implements Serializable
 		this.name2 = "";
 	}
 
-	public Doubleroom(String name, String contact, String gender,
-			String name2, String contact2, String gender2)
+	public Doubleroom(String name, String contact, String gender,String name2, String contact2, String gender2)
 	{
 		this.name = name;
 		this.contact = contact;
@@ -123,24 +123,18 @@ class Reception
 		
 		switch(i)
 		{
-			case 1:
-					hotel_ob.luxury_doubleroom[rn] = 
-					new Doubleroom(name, contact, gender, name2, contact2, 					gender2);
+			case 1:hotel_ob.luxury_doubleroom[rn] = new Doubleroom(name, contact, gender, name2, contact2,gender2);
 					break;
 			
-			case 2:
-					hotel_ob.deluxe_doubleroom[rn] = 
-					new Doubleroom(name, contact, gender, name2, contact2, 					gender2);
+			case 2:hotel_ob.deluxe_doubleroom[rn] =new Doubleroom(name, contact, gender, name2, contact2,gender2);
 					break;
 					
 			case 3:
-				hotel_ob.luxury_singleroom[rn] = 
-				new Singleroom(name, contact, gender);
+				hotel_ob.luxury_singleroom[rn] =new Singleroom(name, contact, gender);
 				break;
 				
 			case 4:
-				hotel_ob.deluxe_singleroom[rn] = 
-				new Singleroom(name, contact, gender);
+				hotel_ob.deluxe_singleroom[rn] =new Singleroom(name, contact, gender);
 				break;
 				
 			default:
@@ -263,24 +257,16 @@ class Reception
 		switch(i)
 		{
 			case 1:
-					System.out.println("Number of double beds : 1\nAC : "
-							+ "Yes\nFree breakfast : Yes\nCharge per day: "
-							+ " 4000 ");
+					System.out.println("Number of double beds : 1\nAC : "+ "Yes\nFree breakfast : Yes\nCharge per day: "+ " 4000 ");
 					break;
 			case 2:
-				System.out.println("Number of double beds : 1\nAC : "
-						+ "No\nFree breakfast : Yes\nCharge per day: "
-						+ " 3000 ");
+				System.out.println("Number of double beds : 1\nAC : "+ "No\nFree breakfast : Yes\nCharge per day: "+ " 3000 ");
 				break;
 			case 3:
-				System.out.println("Number of single beds : 1\nAC : "
-						+ "Yes\nFree breakfast : Yes\nCharge per day: "
-						+ " 2200 ");
+				System.out.println("Number of single beds : 1\nAC : "+ "Yes\nFree breakfast : Yes\nCharge per day: "+ " 2200 ");
 				break;
 			case 4:
-				System.out.println("Number of single beds : 1\nAC : "
-						+ "No\nFree breakfast : Yes\nCharge per day: "
-						+ " 1200 ");
+				System.out.println("Number of single beds : 1\nAC : "+ "No\nFree breakfast : Yes\nCharge per day: "+ " 1200 ");
 				break;
 			default:
 					System.out.println("Enter valid option");
