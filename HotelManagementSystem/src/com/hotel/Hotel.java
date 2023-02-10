@@ -1,7 +1,6 @@
 package com.hotel;
 
 import java.io.Serializable;
-
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.Scanner;
@@ -67,7 +66,8 @@ class Doubleroom extends Singleroom implements Serializable
 		this.name2 = "";
 	}
 
-	public Doubleroom(String name, String contact, String gender,String name2, String contact2, String gender2)
+	public Doubleroom(String name, String contact, String gender,
+			String name2, String contact2, String gender2)
 	{
 		this.name = name;
 		this.contact = contact;
@@ -123,18 +123,24 @@ class Reception
 		
 		switch(i)
 		{
-			case 1:hotel_ob.luxury_doubleroom[rn] = new Doubleroom(name, contact, gender, name2, contact2,gender2);
+			case 1:
+					hotel_ob.luxury_doubleroom[rn] = 
+					new Doubleroom(name, contact, gender, name2, contact2, 					gender2);
 					break;
 			
-			case 2:hotel_ob.deluxe_doubleroom[rn] =new Doubleroom(name, contact, gender, name2, contact2,gender2);
+			case 2:
+					hotel_ob.deluxe_doubleroom[rn] = 
+					new Doubleroom(name, contact, gender, name2, contact2, 					gender2);
 					break;
 					
 			case 3:
-				hotel_ob.luxury_singleroom[rn] =new Singleroom(name, contact, gender);
+				hotel_ob.luxury_singleroom[rn] = 
+				new Singleroom(name, contact, gender);
 				break;
 				
 			case 4:
-				hotel_ob.deluxe_singleroom[rn] =new Singleroom(name, contact, gender);
+				hotel_ob.deluxe_singleroom[rn] = 
+				new Singleroom(name, contact, gender);
 				break;
 				
 			default:
@@ -257,16 +263,24 @@ class Reception
 		switch(i)
 		{
 			case 1:
-					System.out.println("Number of double beds : 1\nAC : "+ "Yes\nFree breakfast : Yes\nCharge per day: "+ " 4000 ");
+					System.out.println("Number of double beds : 1\nAC : "
+							+ "Yes\nFree breakfast : Yes\nCharge per day: "
+							+ " 4000 ");
 					break;
 			case 2:
-				System.out.println("Number of double beds : 1\nAC : "+ "No\nFree breakfast : Yes\nCharge per day: "+ " 3000 ");
+				System.out.println("Number of double beds : 1\nAC : "
+						+ "No\nFree breakfast : Yes\nCharge per day: "
+						+ " 3000 ");
 				break;
 			case 3:
-				System.out.println("Number of single beds : 1\nAC : "+ "Yes\nFree breakfast : Yes\nCharge per day: "+ " 2200 ");
+				System.out.println("Number of single beds : 1\nAC : "
+						+ "Yes\nFree breakfast : Yes\nCharge per day: "
+						+ " 2200 ");
 				break;
 			case 4:
-				System.out.println("Number of single beds : 1\nAC : "+ "No\nFree breakfast : Yes\nCharge per day: "+ " 1200 ");
+				System.out.println("Number of single beds : 1\nAC : "
+						+ "No\nFree breakfast : Yes\nCharge per day: "
+						+ " 1200 ");
 				break;
 			default:
 					System.out.println("Enter valid option");
@@ -314,6 +328,218 @@ class Reception
 		System.out.println("Number of rooms available : " + count);
 	}
 	
+	static void bill(int rn, int rtype)
+	{
+		double amount = 0;
+		String list[] = {"Sandwich", "Pasta", "Noodles", "Coke"};
+		System.out.println("\n*********");
+		System.out.println(" Bill:- ");
+		System.out.println("**********");
+		
+		switch(rtype)
+		{
+			case 1:
+				amount += 4000;
+				System.out.println("\nRoom Charge - " + 4000);
+				System.out.println("\n=====================");
+				System.out.println("Food Charges:- ");
+				System.out.println("\n=====================");
+				System.out.println("Item   Quantity   Price");
+				System.out.println("------------------------");
+				for(Food obb:hotel_ob.luxury_doubleroom[rn].food)
+				{
+					amount += obb.price;
+					String format = "%-10s%-10s%-10s%n";
+					System.out.printf(format, list[obb.itemno - 1],
+							obb.quantity,obb.price);
+				}
+				break;
+			case 2:
+				amount += 3000;
+				System.out.println("\nRoom Charge - " + 3000);
+				System.out.println("\n=====================");
+				System.out.println("Food Charges:- ");
+				System.out.println("\n=====================");
+				System.out.println("Item   Quantity   Price");
+				System.out.println("------------------------");
+				for(Food obb:hotel_ob.deluxe_doubleroom[rn].food)
+				{
+					amount += obb.price;
+					String format = "%-10s%-10s%-10s%n";
+					System.out.printf(format, list[obb.itemno - 1],
+							obb.quantity,obb.price);
+				}
+				break;
+			case 3:
+				amount += 2200;
+				System.out.println("\nRoom Charge - " + 2200);
+				System.out.println("\n=====================");
+				System.out.println("Food Charges:- ");
+				System.out.println("\n=====================");
+				System.out.println("Item   Quantity   Price");
+				System.out.println("------------------------");
+				for(Food obb:hotel_ob.luxury_singleroom[rn].food)
+				{
+					amount += obb.price;
+					String format = "%-10s%-10s%-10s%n";
+					System.out.printf(format, list[obb.itemno - 1],
+							obb.quantity,obb.price);
+				}
+				break;
+			case 4:
+				amount += 1200;
+				System.out.println("\nRoom Charge - " + 1200);
+				System.out.println("\n=====================");
+				System.out.println("Food Charges:- ");
+				System.out.println("\n=====================");
+				System.out.println("Item   Quantity   Price");
+				System.out.println("------------------------");
+				for(Food obb:hotel_ob.deluxe_singleroom[rn].food)
+				{
+					amount += obb.price;
+					String format = "%-10s%-10s%-10s%n";
+					System.out.printf(format, list[obb.itemno - 1],
+							obb.quantity,obb.price);
+				}
+				break;
+			default:
+					System.out.println("Not valid");
+		}
+		System.out.println("\nTotal Amount- " + amount);
+	}
+	
+	static void deallocate(int rn, int rtype)
+	{
+		int j;
+		char w;
+		switch(rtype)
+		{
+			case 1:
+					if(hotel_ob.luxury_doubleroom[rn] != null)
+						System.out.println("Room used by "
+					+ hotel_ob.luxury_doubleroom[rn].name);
+					else
+					{
+						System.out.println("Empty Already");
+						return;
+					}
+					System.out.println("Do you want to checkout ?(y/n)");
+					w = input.next().charAt(0);
+					if(w == 'y' || w == 'Y')
+					{
+						bill(rn, rtype);
+						hotel_ob.luxury_doubleroom[rn] = null;
+						System.out.println("Deallocated successfully");
+					}
+					break;
+			case 2:
+				if(hotel_ob.deluxe_doubleroom[rn] != null)
+					System.out.println("Room used by "
+				+ hotel_ob.deluxe_doubleroom[rn].name);
+				else
+				{
+					System.out.println("Empty Already");
+					return;
+				}
+				System.out.println("Do you want to checkout ?(y/n)");
+				w = input.next().charAt(0);
+				if(w == 'y' || w == 'Y')
+				{
+					bill(rn, rtype);
+					hotel_ob.deluxe_doubleroom[rn] = null;
+					System.out.println("Deallocated successfully");
+				}
+				break;
+			case 3:
+				if(hotel_ob.luxury_singleroom[rn] != null)
+					System.out.println("Room used by "
+				+ hotel_ob.luxury_singleroom[rn].name);
+				else
+				{
+					System.out.println("Empty Already");
+					return;
+				}
+				System.out.println("Do you want to checkout ?(y/n)");
+				w = input.next().charAt(0);
+				if(w == 'y' || w == 'Y')
+				{
+					bill(rn, rtype);
+					hotel_ob.luxury_singleroom[rn] = null;
+					System.out.println("Deallocated successfully");
+				}
+				break;
+			case 4:
+				if(hotel_ob.deluxe_singleroom[rn] != null)
+					System.out.println("Room used by "
+				+ hotel_ob.deluxe_singleroom[rn].name);
+				else
+				{
+					System.out.println("Empty Already");
+					return;
+				}
+				System.out.println("Do you want to checkout ?(y/n)");
+				w = input.next().charAt(0);
+				if(w == 'y' || w == 'Y')
+				{
+					bill(rn, rtype);
+					hotel_ob.deluxe_singleroom[rn] = null;
+					System.out.println("Deallocated successfully");
+				}
+				break;
+			default:
+					System.out.println("\nEnter valid option : ");
+					break;
+		}
+	}
+	
+	static void order(int rn, int rtype)
+	{
+		int i, q;
+		char wish;
+		try
+		{
+			System.out.println("\n==================\n Menu: \n=====\n\n"
+					+ "1.Sandwich\tRs.50\n2.Pasta\t\tRs.60\n3.Noodles\t"
+					+ "\tRs.70\n4.Coke\t\tRs.30\n");
+			do
+			{
+				i = input.nextInt();
+				System.out.println("Quantity - ");
+				q = input.nextInt();
+				
+				switch(rtype)
+				{
+					case 1:
+							hotel_ob.luxury_doubleroom[rn].food.add
+							(new Food(i, q));
+							break;
+					case 2:
+							hotel_ob.deluxe_doubleroom[rn].food.add
+							(new Food(i, q));
+							break;
+					case 3:
+							hotel_ob.luxury_singleroom[rn].food.add
+							(new Food(i, q));
+							break;
+				    case 4:
+				    		hotel_ob.deluxe_singleroom[rn].food.add
+				    		(new Food(i, q));
+				    		break;
+				}
+				System.out.println("Do you want to order anything else ? (y/n)");
+				wish = input.next().charAt(0);
+			}
+			while(wish == 'y' || wish == 'Y');
+		}
+		catch(NullPointerException ex)
+		{
+			System.out.println("\nRoom not booked");
+		}
+		catch(Exception ex)
+		{
+			System.out.println("Cannot be done");
+		}												
+	}
 }
 	
 	
@@ -321,10 +547,6 @@ class Reception
 	
 	
 	
-
-
-
-
 public class Hotel
 {
 
@@ -335,4 +557,3 @@ public class Hotel
 	}
 
 }
-
